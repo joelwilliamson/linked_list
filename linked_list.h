@@ -39,7 +39,7 @@ struct list_node * find_prev_node(struct list_node * current_node);
  * Requires a pointer to the current element
  */
 #define append(current_element,element_type,list_name,ptr_to_new_element) \
-	(find_last_node(&(current_element)->list_name)->next = &(ptr_to_new_element->list_name))
+	((ptr_to_new_element->list_name.prev=find_last_node(&(current_element)->list_name))->next = &(ptr_to_new_element->list_name))
 
 
 #define foreach(current_element,element_type,list_name,temp_name) \
