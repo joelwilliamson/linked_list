@@ -36,6 +36,7 @@ struct list_node * find_prev_node(struct list_node * current_node);
 
 /*
  * Insert the new element after the last element and return a pointer to it
+ * Requires a pointer to the current element
  */
 #define append(current_element,element_type,list_name,ptr_to_new_element) \
 	find_last_node(current_element.list_name).list_name.next = ptr_to_new_element
