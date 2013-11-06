@@ -1,6 +1,6 @@
 /* Return a pointer to the object containing a field */
 #define container_of(ptr_to_field,object_name,field_name) \
-	((object_name*)(((void*)ptr_to_field) - (void*)&(((object_name*)0)->field_name)))
+	(ptr_to_field?(object_name*)(((void*)ptr_to_field) - (void*)&(((object_name*)0)->field_name)):NULL)
 
 struct list_node {
 	struct list_node * next;	/* The next node in the list, NULL if this node is last */
@@ -40,3 +40,9 @@ struct list_node * find_prev_node(struct list_node * current_node);
  */
 #define append(current_element,element_type,list_name,ptr_to_new_element) \
 	(find_last_node(&(current_element)->list_name)->next = &(ptr_to_new_element->list_name))
+
+
+#define foreach(current_element,element_type,list_name,temp_name) \
+	for (element_type * temp_name = current_element; \
+		temp_name != NULL; \
+		temp_name = next_element(temp_name,element_type,list_name))
