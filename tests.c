@@ -52,7 +52,11 @@ int test_append()
 	print_int_list_node("pil1",pil1);
 	print_int_list_node("pil2",pil2);
 
-	print_int_list_node("head->next",next_element(&head,struct int_list,list));
+	printf("%p\n",next_element(pil2,struct int_list,list));
+
+	foreach(&head,struct int_list,list,elem) {
+		printf("%d\n",elem->data);
+	}
 
 	return next_element(&head,struct int_list,list)->data == pil1->data;
 }
