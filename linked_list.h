@@ -17,3 +17,11 @@ struct list_node {
 
 #define prev_element(current_element,element_type,list_name) \
 	container_of(current_element.list_name.prev,list_name.prev,element_type)
+
+struct list_node * find_last_node(struct list_node * current_node);
+
+/*
+ * Return a pointer to the last element in the list
+ */
+#define find_last(current_element,element_type,list_name) \
+	container_of(find_last_node(current_element.list_name),list_name,element_type)
