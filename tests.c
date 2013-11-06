@@ -29,11 +29,32 @@ struct int_list {
 	int data;
 	struct list_node list;
 };
+
+void print_int_list_node(char* node_name, struct int_list * node)
+{
+	printf("%s = {%d,{%p,%p}} @ %p\n",node_name,node->data,node->list.next,node->list.prev,node);
+}
+
 int test_append()
 {
-	struct int_list head = {5,{NULL,NULL}};
+	struct int_list head = {0,{NULL,NULL}};
+	struct int_list * pil1 = malloc(sizeof(*pil1));
+	pil1->data = 1;
+	pil1->list.next = NULL;
+	struct int_list * pil2 = malloc(sizeof(*pil2));
+	pil2->data = 2;
+	pil2->list.next = NULL;
 
-	return 1;
+	append(&head,struct int_list,list,pil1);
+	append(&head,struct int_list,list,pil2);
+
+	print_int_list_node("head",&head);
+	print_int_list_node("pil1",pil1);
+	print_int_list_node("pil2",pil2);
+
+	print_int_list_node("head->next",next_element(&head,struct int_list,list));
+
+	return next_element(&head,struct int_list,list)->data == pil1->data;
 }
 
 
