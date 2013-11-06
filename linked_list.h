@@ -25,3 +25,11 @@ struct list_node * find_last_node(struct list_node * current_node);
  */
 #define find_last(current_element,element_type,list_name) \
 	container_of(find_last_node(current_element.list_name),list_name,element_type)
+
+struct list_node * find_prev_node(struct list_node * current_node);
+
+/*
+ * Return a pointer to the first element in the list
+ */
+#define find_first(current_element,element_type,list_name) \
+	container_of(find_first_node(current_element.list_name),list_name,element_type)
